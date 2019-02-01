@@ -69,7 +69,9 @@ class BigcommerceController extends AbstractController
     public function load()
     {
         return $this->render('bigcommerce/load.html.twig', [
-            'controller_name' => 'BigcommerceController',
+            'access_token' => $this->redis->get('access_token'),
+            'user_email' => $this->redis->get('user_email'),
+            'context' => $this->redis->get('context'),
         ]);
     }
 
