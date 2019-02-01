@@ -32,7 +32,6 @@ class RedisConnector
         $password = getenv('REDIS_PASSWORD');;
         $db = getenv('REDIS_DATABASE');
 
-
         $this->connection = RedisAdapter::createConnection(
             "redis://:$password@$host:$port/$db",
             [

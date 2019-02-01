@@ -24,7 +24,9 @@ class BigcommerceController extends AbstractController
     public function index()
     {
         return $this->render('bigcommerce/index.html.twig', [
-            'controller_name' => 'BigcommerceController',
+            'access_token' => $this->redis->get('access_token'),
+            'user_email' => $this->redis->get('user_email'),
+            'context' => $this->redis->get('context'),
         ]);
     }
 
@@ -49,12 +51,12 @@ class BigcommerceController extends AbstractController
         );
         $response = $connection->post($tokenUrl, $param);
 
-        print_r($param);
-        print_r($response);
-        /*        $token = $response->access_token;
-                $context = $response->context;
-                $this->redis->set('access_token', $token);
-                $this->redis->set('context', $context);*/
+        $token = $response->access_token;
+        $context = $response->context;
+        $user_email = $response->user->email;
+        $this->redis->set('access_token', $token);
+        $this->redis->set('user_email', $user_email);
+        $this->redis->set('context', $context);
 
         return $this->render('bigcommerce/index.html.twig', [
             'controller_name' => 'BigcommerceController',
@@ -66,7 +68,7 @@ class BigcommerceController extends AbstractController
      */
     public function load()
     {
-        return $this->render('bigcommerce/index.html.twig', [
+        return $this->render('bigcommerce/load.html.twig', [
             'controller_name' => 'BigcommerceController',
         ]);
     }
