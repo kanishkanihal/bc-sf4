@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CmsBlock index{% endblock %}
+
+{% block body %}
+    <a href="{{ path('bigcommerce-load') }}">App home</a>
+    <h1>CmsBlock index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cms_block in cms_blocks %}
+            <tr>
+                <td>{{ cms_block.id }}</td>
+                <td>{{ cms_block.title }}</td>
+                <td>{{ cms_block.content }}</td>
+                <td>
+                    <a href="{{ path('cms_block_show', {'id': cms_block.id}) }}">show</a>
+                    <a href="{{ path('cms_block_edit', {'id': cms_block.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('cms_block_new') }}">Create new</a>
+{% endblock %}

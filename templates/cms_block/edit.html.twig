@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CmsBlock{% endblock %}
+
+{% block body %}
+    <a href="{{ path('bigcommerce-load') }}">App home</a>
+    <h1>Edit CmsBlock</h1>
+
+    {{ include('cms_block/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('cms_block_index') }}">back to list</a>
+
+    {{ include('cms_block/_delete_form.html.twig') }}
+{% endblock %}

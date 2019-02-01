@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CmsBlock{% endblock %}
+
+{% block body %}
+    <a href="{{ path('bigcommerce-load') }}">App home</a>
+    <h1>Create new CmsBlock</h1>
+
+    {{ include('cms_block/_form.html.twig') }}
+
+    <a href="{{ path('cms_block_index') }}">back to list</a>
+{% endblock %}
