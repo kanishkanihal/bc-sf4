@@ -37,7 +37,7 @@ class BigcommerceController extends AbstractController
     {
         $tokenUrl = "https://login.bigcommerce.com/oauth2/token";
         $connection = new Connection();
-        $connection->useUrlencoded();
+        /*$connection->useUrlencoded();*/
         $param = array(
             "client_id" => getenv('BC_CLIENT_ID'),
             "client_secret" => getenv('BC_CLIENT_SECRET'),
