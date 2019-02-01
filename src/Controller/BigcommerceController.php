@@ -38,7 +38,7 @@ class BigcommerceController extends AbstractController
         $tokenUrl = "https://login.bigcommerce.com/oauth2/token";
         $connection = new Connection();
         $connection->useUrlencoded();
-        $response = $connection->post($tokenUrl, array(
+        $param = array(
             "client_id" => getenv('BC_CLIENT_ID'),
             "client_secret" => getenv('BC_CLIENT_SECRET'),
             "redirect_uri" => getenv('BC_CALLBACK_URL'),
@@ -46,11 +46,15 @@ class BigcommerceController extends AbstractController
             "code" => $request->get("code"),
             "scope" => $request->get("scope"),
             "context" => $request->get("context"),
-        ));
-        $token = $response->access_token;
-        $context = $response->context;
-        $this->redis->set('access_token', $token);
-        $this->redis->set('context', $context);
+        );
+        $response = $connection->post($tokenUrl, $param);
+
+        print_r($param);
+        print_r($response);
+        /*        $token = $response->access_token;
+                $context = $response->context;
+                $this->redis->set('access_token', $token);
+                $this->redis->set('context', $context);*/
 
         return $this->render('bigcommerce/index.html.twig', [
             'controller_name' => 'BigcommerceController',
