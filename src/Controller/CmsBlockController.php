@@ -53,9 +53,14 @@ class CmsBlockController extends AbstractController
      */
     public function show(CmsBlock $cmsBlock): Response
     {
-        return $this->render('cms_block/show.html.twig', [
-            'cms_block' => $cmsBlock,
-        ]);
+        $response = new Response();
+        $response->setContent(json_encode([
+            'id' => $cmsBlock->getId(),
+            'title' => $cmsBlock->getTitle(),
+            'content' => $cmsBlock->getContent(),
+        ]));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 
     /**
