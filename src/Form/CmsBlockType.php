@@ -13,7 +13,7 @@ class CmsBlockType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('content')
+            ->add('content',\FOS\CKEditorBundle\Form\Type\CKEditorType::class)
         ;
     }
 

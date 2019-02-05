@@ -20,7 +20,7 @@
             <tr>
                 <td>{{ cms_block.id }}</td>
                 <td>{{ cms_block.title }}</td>
-                <td>{{ cms_block.content }}</td>
+                <td>{{ cms_block.content | raw  }}</td>
                 <td>
                     <a href="{{ path('cms_block_show', {'id': cms_block.id}) }}">show</a>
                     <a href="{{ path('cms_block_edit', {'id': cms_block.id}) }}">edit</a>
